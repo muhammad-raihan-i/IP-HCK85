@@ -5,7 +5,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <p>ini vite project</p>
+    <h1>hai, aku frontend</h1>
   )
 }
 

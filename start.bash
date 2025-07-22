@@ -1,0 +1,1 @@
+npx nodemon ./backend/bin/www && cd frontend && npm run dev && cd ..
