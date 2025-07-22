@@ -17,6 +17,7 @@ let room1={
     dormLat:-6.5,
     dormLong:106.5,
     roomNumber:"3A",
+    roomImageUrl:"https://example.com/images/room.jpg",
     roomSize:20,
     UserLandlordId:1
 }

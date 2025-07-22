@@ -14,8 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Lndcx />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/rooms/:roomId" element={<RoomDetail RoomId={req.params.roomId} />} />
-        <Route path="/users/:userId" element={<UserDetail UserId={req.params.userId} />} />
+        <Route path="/rooms/:roomId" element={<RoomDetail />} />
+        <Route path="/users/:userId" element={<UserDetail  />} />
       </Routes>
     </Router>
   )
