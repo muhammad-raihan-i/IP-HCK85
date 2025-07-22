@@ -14,11 +14,10 @@ let user1={
 let room1={
     id:1234,
     dormAddress:"",
-    dormLat:-6.239490,
-    dormLong:106.913217,
+    dormLat:-6.5,
+    dormLong:106.5,
     roomNumber:"3A",
     roomSize:20,
-    isVacant:true,
     UserLandlordId:1
 }
 let session1={
@@ -27,6 +26,5 @@ let session1={
     //business rule: checkin dianggap jam 14
     //checkout dianggap jam 12
     endDate:"2025-12-31",
-    rating:0,
     UserTenantId:1
 }
