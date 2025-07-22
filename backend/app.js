@@ -1,6 +1,14 @@
 require("dotenv").config()
 const express = require('express')
 const app = express()//function invoke
+const cors = require('cors')
+const RoomController = require('./controllers/roomController.js')
+const UserController = require('./controllers/userController.js')
+
+
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', (req, res) => {
@@ -17,7 +25,7 @@ app.get('/', (req, res) => {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: sans-serif;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     }
     h1 {
       color: white;
