@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Hai Backend</title>
+  <title>Hai, aku Backend</title>
   <style>
     body {
       background-color: pink;
