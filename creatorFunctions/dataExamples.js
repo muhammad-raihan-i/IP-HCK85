@@ -24,8 +24,8 @@ let room1={
 let session1={
     id:1,
     startDate:"2025-01-01",
-    //business rule: checkin dianggap jam 14
-    //checkout dianggap jam 12
+    isRunning:false,
     endDate:"2025-12-31",
+    RoomId:1,
     UserTenantId:1
 }

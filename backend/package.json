@@ -3,17 +3,25 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "d": "nodemon bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "createModel": "npx sequelize model:create --name User --attributes fullname:string,username:string,email:string,password:string,phoneNumber:string,birthdate:date,job:string,role:string,profileImgUrl:text && npx sequelize model:create --name Room --attributes dormAddress:string,dormLat:float,dormLong:float,roomNumber:string,roomImageUrl:string,roomSize:integer,UserLandlordId:integer && npx sequelize model:create --name Session --attributes startDate:date,isRunning:boolean,endDate:date,RoomId:integer,UserTenantId:integer",
+    "migrate": "node migrations/20250723031744-create-user.js && node migrations/20250723031746-create-room.js && node migrations/20250723031748-create-session.js",
+    "migrate2": "npx sequelize db:migrate",
+    "makeSeeder": "npx sequelize seed:create --name seed-Users && npx sequelize seed:create --name seed-Rooms && npx sequelize seed:create --name seed-Sessions",
+    "runSeeder": "node seeders/20250723040927-seed-Users.js && node seeders/20250723040929-seed-Rooms.js && node seeders/20250723040930-seed-Sessions.js",
+    "seed": "npx sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "nodemon": "^3.1.10",
     "pg": "^8.16.3"
   },

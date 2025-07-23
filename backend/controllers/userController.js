@@ -1,33 +1,53 @@
 const User = require('../models/user.js')
 class UserController{//crud
-    static async getUser(req,res,next) {//r
+    /*
+    router.get("/users", UserController.getAllUser)//r
+    router.post("/users/create",UserController.createUser)//c
+    router.get("/users/:id", UserController.getUserId)//r
+    router.get("/users/:id/history", SessionController.getUserHistory)//rx
+    router.patch("/users/:id/update", UserController.updateUser)//u
+    router.delete("/users/:id/delete", UserController.deleteUser)//d
+    */
+    static async getAllUser(req,res,next) {//r
         try{
             const user = await User.findAll()
-            if(!user) return res.status(404).json({message: "User not found"})
+            if(!user){
+                throw {message: "No users!"}
+            } 
             res.status(200).json(user)
         }catch(err){
+            next(err)
+        }
+    }
+    static async createUser(req, res, next) {//c
+        try {
+            const tempObject={
+                name: req.body.name,
+                email: req.body.email,
+                password: req.body.password,
+                birthdate: req.body.birthdate,
+                job: req.body.job,
+                role: req.body.role,
+                profileImgUrl: req.body.profileImgUrl
+            }
+            const user = await User.create(tempObject)
+            res.status(201).json(user)
+        } catch (err) {
             next(err)
         }
     }
     static async getUserId(req, res, next) {//r
         try {
             const user = await User.findById(req.params.id)
-            if (!user) return res.status(404).json({ message: "User not found" })
+            if (!user){
+                throw {message: "No such user!"}
+            } 
             res.status(200).json(user)
         } catch (err) {
             next(err)
         }
     }
-    static async createUser(req, res, next) {//c
-        try {
-            //copilot code
-            //repair me later
-            const user = await newUser.create()
-            res.status(201).json(user)
-        } catch (err) {
-            next(err)
-        }
-    }
+    
     static async updateUser(req, res, next) {//u
         try {
             //copilot code
