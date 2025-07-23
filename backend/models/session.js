@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Session.init({
     startDate: {
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -28,12 +28,12 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       isRunning: {
-        type: Sequelize.BOOLEAN,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true
       },
       endDate: {
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       RoomId: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
           model: 'Rooms',
@@ -55,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'cascade'
       },
       UserTenantId: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
           model: 'Users',

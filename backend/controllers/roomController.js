@@ -1,20 +1,30 @@
-const {Room} = require('../models')
+const {Room,Session} = require('../models')
 // masih ada R kapital, perbaiki jadi r
 //kecuali di nama kelas dan model
 class RoomController{//crud
-    static async getRoom(req,res,next) {//r
+    static async getAllRoom(req,res,next) {//r
         try{
-            const room = await Room.findAll()
-            if(!room) return res.status(404).json({message: "Room not found"})
-            res.status(200).json(Room)
+            const rooms = await Room.findAll({include:[{model:Session}]})
+            if(!rooms){
+                throw {name:"nodata",message: "No rooms found!"}
+            }
+            res.status(200).json(rooms)
         }catch(err){
             next(err)
         }
     }
     static async getRoomId(req, res, next) {//r
         try {
-            const room = await Room.findById(req.params.id)
-            if (!room) return res.status(404).json({ message: "Room not found" })
+            const room = await Room.findByPk(req.params.id,
+                {
+                    include: [
+                        { model: Session }
+                    ]
+                }
+            )
+            if (!room){
+                throw {name:"nodata",message: "No such room!" }
+            }
             res.status(200).json(room)
         } catch (err) {
             next(err)
@@ -22,9 +32,7 @@ class RoomController{//crud
     }
     static async createRoom(req, res, next) {//c
         try {
-            //copilot code
-            //repair me later
-            const room = await newRoom.create()
+            const room = await Room.create(req.body)
             res.status(201).json(room)
         } catch (err) {
             next(err)
@@ -32,10 +40,12 @@ class RoomController{//crud
     }
     static async updateRoom(req, res, next) {//u
         try {
-            //copilot code
-            //repair me later
-            const room = await Room.update(req.params.id, req.body)
-            if (!room) return res.status(404).json({ message: "Room not found" })
+            const room = await Room.update(req.body, {
+                where: { id: req.params.id }
+            })
+            if (!room){
+                throw {name:"nodata",message: "No such room!" }
+            }
             res.status(200).json(room)
         } catch (err) {
             next(err)
@@ -43,10 +53,12 @@ class RoomController{//crud
     }
     static async deleteRoom(req, res, next) {//d
         try {
-            //copilot code
-            //repair me later
-            const room = await Room.delete(req.params.id)
-            if (!room) return res.status(404).json({ message: "Room not found" })
+            const room = await Room.destroy({
+                where: { id: req.params.id }
+            })
+            if (!room){
+                throw {name:"nodata",message: "No such room!" }
+            }
             res.status(200).json({ message: "Room deleted successfully" })
         } catch (err) {
             next(err)

@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Room extends Model {
     /**
      * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
+     * This method is not a part of sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Room.init({
     dormAddress: {
-        type: Sequelize.TEXT,
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       dormLat: {
-        type: Sequelize.FLOAT,
+        type: DataTypes.FLOAT,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       dormLong: {
-        type: Sequelize.FLOAT,
+        type: DataTypes.FLOAT,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       roomNumber: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -64,7 +64,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       roomImageUrl: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -76,7 +76,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       roomSize: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -88,7 +88,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       UserLandlordId: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         references: {
           model: 'Users',
           key: 'id'

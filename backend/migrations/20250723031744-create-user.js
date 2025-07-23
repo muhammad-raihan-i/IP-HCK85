@@ -24,6 +24,7 @@ module.exports = {
       username: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique:true,
         validate: {
           notEmpty: {
             msg: 'Username required!'
@@ -36,6 +37,7 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique:true,
         validate: {
           notEmpty: {
             msg: 'Email required!'

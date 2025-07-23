@@ -1,4 +1,5 @@
 'use strict';
+const bcrypt = require('../helpers/bcrypt');
 const {
   Model
 } = require('sequelize');
@@ -16,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init({
     fullname: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -28,8 +29,12 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       username: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
+        unique: {
+          arg: true,
+          msg: 'Username unusable!'
+        },
         validate: {
           notEmpty: {
             msg: 'Username required!'
@@ -40,8 +45,12 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       email: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
+        unique: {
+          arg: true,
+          msg: 'Email unusable!'
+        },
         validate: {
           notEmpty: {
             msg: 'Email required!'
@@ -55,7 +64,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       password: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -67,7 +76,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       phoneNumber: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -79,7 +88,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       birthdate: {
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -94,7 +103,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       job: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -106,12 +115,12 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       role: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         defaultValue: 'tenant',
       },
       profileImgUrl: {
-        type: Sequelize.TEXT,
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -123,6 +132,14 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
   }, {
+    hooks: {
+      beforeCreate: (user, options) => {
+        user.password = bcrypt.hide(user.password);
+      },
+      beforeUpdate: (user, options) => {
+        user.password = bcrypt.hide(user.password); 
+      },
+    },
     sequelize,
     modelName: 'User',
   });

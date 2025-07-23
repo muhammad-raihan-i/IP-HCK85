@@ -11,3 +11,8 @@ function check(token){
         return err
     }
 }//async???!?!?!!
+
+module.exports = {
+    make,
+    check
+};
