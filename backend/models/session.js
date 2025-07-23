@@ -10,22 +10,60 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Session.belongsTo(models.Room, {
-        foreignKey: 'RoomId',
-        as: 'room'
-      });
-      Session.belongsTo(models.User, {
-        foreignKey: 'UserTenantId',
-        as: 'tenant'
-      });
+      Session.belongsTo(models.Room, { foreignKey: 'RoomId' });
+      Session.belongsTo(models.User, { foreignKey: 'UserTenantId' });
     }
   }
   Session.init({
-    startDate: DataTypes.DATE,
-    isRunning: DataTypes.BOOLEAN,
-    endDate: DataTypes.DATE,
-    RoomId: DataTypes.INTEGER,
-    UserTenantId: DataTypes.INTEGER
+    startDate: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: 'Start date required!'
+          },
+          notNull: {
+            msg: 'Start date required!'
+          }
+        }
+      },
+      isRunning: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: true
+      },
+      endDate: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: 'End date required!'
+          },
+          notNull: {
+            msg: 'End date required!'
+          }
+        }
+      },
+      RoomId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Rooms',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
+      },
+      UserTenantId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Users',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
+      },
   }, {
     sequelize,
     modelName: 'Session',

@@ -2,13 +2,13 @@ require("dotenv").config()
 const express = require('express')
 const app = express()//function invoke
 const cors = require('cors')
-const RoomController = require('./controllers/roomController.js')
-const UserController = require('./controllers/userController.js')
+const router = require('./routes')
 
 
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(router)
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', (req, res) => {

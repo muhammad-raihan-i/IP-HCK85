@@ -1,4 +1,4 @@
-const Session = require('../models/session.js');
+const {Session} = require('../models');
 class SessionController {
   static async createSession(req,res,next){
     try {

@@ -1,4 +1,4 @@
-const Room = require('../models/room.js')
+const {Room} = require('../models')
 // masih ada R kapital, perbaiki jadi r
 //kecuali di nama kelas dan model
 class RoomController{//crud

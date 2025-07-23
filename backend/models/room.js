@@ -10,24 +10,92 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Room.belongsTo(models.User, {
-        foreignKey: 'UserLandlordId',
-        as: 'landlord'
-      });
-      Room.hasMany(models.Session, {
-        foreignKey: 'RoomId',
-        as: 'sessions'
-      });
+      Room.hasMany(models.Session, {foreignKey: 'RoomId',});
+      Room.belongsTo(models.User,{foreignKey:'UserLandlordId'})
     }
   }
   Room.init({
-    dormAddress: DataTypes.STRING,
-    dormLat: DataTypes.FLOAT,
-    dormLong: DataTypes.FLOAT,
-    roomNumber: DataTypes.STRING,
-    roomImageUrl: DataTypes.STRING,
-    roomSize: DataTypes.INTEGER,
-    UserLandlordId: DataTypes.INTEGER
+    dormAddress: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: 'Dorm address required!',
+          },
+          notNull: {
+            msg: 'Dorm address required!'
+          }
+        }
+      },
+      dormLat: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: 'Dorm location required!'
+          },
+          notNull: {
+            msg: 'Dorm location required!'
+          }
+        }
+      },
+      dormLong: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: 'Dorm location required!'
+          },
+          notNull: {
+            msg: 'Dorm location required!'
+          }
+        }
+      },
+      roomNumber: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: 'Room number required!'
+          },
+          notNull: {
+            msg: 'Room number required!'
+          }
+        }
+      },
+      roomImageUrl: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: 'Image required!',
+          },
+          notNull: {
+            msg: 'Image required!'
+          }
+        }
+      },
+      roomSize: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: 'Room size required!'
+          },
+          notNull: {
+            msg: 'Room size required!'
+          }
+        }
+      },
+      UserLandlordId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
+      }
   }, {
     sequelize,
     modelName: 'Room',

@@ -10,7 +10,8 @@
     "migrate2": "npx sequelize db:migrate",
     "makeSeeder": "npx sequelize seed:create --name seed-Users && npx sequelize seed:create --name seed-Rooms && npx sequelize seed:create --name seed-Sessions",
     "runSeeder": "node seeders/20250723040927-seed-Users.js && node seeders/20250723040929-seed-Rooms.js && node seeders/20250723040930-seed-Sessions.js",
-    "seed": "npx sequelize db:seed:all"
+    "seed": "npx sequelize db:seed:all",
+    "resetDb":"npx sequelize db:seed:undo && npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",
