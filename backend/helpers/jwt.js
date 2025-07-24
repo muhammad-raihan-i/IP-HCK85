@@ -2,11 +2,13 @@ const jwt=require('jsonwebtoken');
 const secret = process.env.JWT_SECRET
 
 function make(obj){
-    return jwt.sign(obj, secret, { expiresIn: '1h' })
+    return jwt.sign(obj, secret)
 }
 function check(token){
     try {
-        return jwt.verify(token, secret)
+        let result=jwt.verify(token, secret)
+        console.log(result)
+        return result
     } catch (err) {
         return err
     }
