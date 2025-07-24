@@ -7,6 +7,6 @@
 export default function UserDetail(asdfg) {
     const { UserId } = asdfg;
     return (
-        <h1>Ini halaman yg diakses ketika user mengakses ngekosenak.com/users/{UserId}</h1>
+        <div className="m10"></div>
     )
 }

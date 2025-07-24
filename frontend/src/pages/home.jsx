@@ -4,13 +4,17 @@
 // ada search
 // ada pagination
 // ada navbar
+import Navbar2 from '../components/navbar';
 // ada profile
 
 export default function Home(){
     return (
-        <h1>Ini halaman yg diakses ketika
-            <br/>
-            user mengakses ngekosenak.com/home
-        </h1>
+        <div>
+        <Navbar2/>
+        <div className="m10">
+
+        </div>
+        </div>
     )
 }
+

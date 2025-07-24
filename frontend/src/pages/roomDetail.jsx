@@ -3,12 +3,13 @@
 // halaman ini menampilkan detail koskosan
 // semua informasi koskosan ditampilkan di sini
 
-export default function RoomDetail(asdfg){
-    const { RoomId } = asdfg;
+export default function RoomDetail(properties){
+    const { RoomId } = properties;
     return (
-        <h1>Ini halaman yg diakses ketika
-            <br/>
-            user mengakses ngekosenak.com/rooms/{RoomId}
-        </h1>
+        <div>
+
+        
+        <div className="m10"></div>
+        </div>
     )
 }
