@@ -2,7 +2,7 @@
 import Navbar2 from '../components/navbar';
 // ada profile
 
-export default function Me(){
+export default function Me(properties){
     return (
         <div>
         <Navbar2/>
