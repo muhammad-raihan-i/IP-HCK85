@@ -1,12 +1,17 @@
 const {User,Session} = require('../models')
-const gemini=require("../helpers/gemini.js")
+const gemini0 =require("../helpers/gemini.js").default
 class UserController{
    //router.get("/users", UserController.getAllUser)//r
    static async gemini2(req,res,next){
         try{
+            console.log(gemini0,"hai aku gemini0 dari controller")
             const {prompt}=req.body
-            res.status(200).json({message:gemini(prompt)})
+            console.log(prompt,"hai aku promtp")
+            const result=await gemini0(prompt)
+            res.status(200).json({message:result})
         }catch(err){
+            console.log("hai aku error gemini")
+            console.log(err)
             next(err)
         }
     }

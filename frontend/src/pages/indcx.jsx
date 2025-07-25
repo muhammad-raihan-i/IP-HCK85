@@ -67,6 +67,12 @@ export default function Indcx(){
                     Submit
                 </Button>
             </Form>
+            <div className="mt-3">
+                <span>Belum punya akun? </span>
+                <Button variant="link" onClick={() => navigate("/register")}>
+                    Daftar segera
+                </Button>
+            </div>
         </div>
     );
 }

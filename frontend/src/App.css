@@ -1,7 +1,9 @@
 .m10{
   margin:10px;
 }
-
+.g10{
+  gap:10px;
+}
 .bgPink{
   background-color: rgb(255, 216, 222);
 }

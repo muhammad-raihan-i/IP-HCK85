@@ -11,6 +11,7 @@ const errorHandler=require('../middlewares/errorHandler.js')
 router.post("/login", login,errorHandler)//p
 
 //user
+router.post("/gemini",loginGate,UserController.gemini2,errorHandler)//p
 router.get("/users",loginGate, UserController.getAllUser,errorHandler)//r
 router.post("/users/create",loginGate, UserController.createUser,errorHandler)//c
 router.get("/users/:id",loginGate, UserController.getUserId,errorHandler)//r
