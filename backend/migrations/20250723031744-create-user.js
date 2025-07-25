@@ -108,15 +108,6 @@ module.exports = {
       },
       profileImgUrl: {
         type: Sequelize.TEXT,
-        allowNull: false,
-        validate: {
-          notEmpty: {
-            msg: 'Image required!'
-          },
-          notNull: {
-            msg: 'Image required!'
-          }
-        }
       },
       createdAt: {
         allowNull: false,

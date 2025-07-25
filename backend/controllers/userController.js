@@ -1,6 +1,15 @@
 const {User,Session} = require('../models')
+const gemini=require("../helpers/gemini.js")
 class UserController{
    //router.get("/users", UserController.getAllUser)//r
+   static async gemini2(req,res,next){
+        try{
+            const {prompt}=req.body
+            res.status(200).json({message:gemini(prompt)})
+        }catch(err){
+            next(err)
+        }
+    }
     static async getAllUser(req,res,next) {//r
         try{
             console.log("getAllUser")

@@ -120,16 +120,7 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 'tenant',
       },
       profileImgUrl: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-        validate: {
-          notEmpty: {
-            msg: 'Image required!'
-          },
-          notNull: {
-            msg: 'Image required!'
-          }
-        }
+        type: DataTypes.TEXT
       }
   }, {
     hooks: {

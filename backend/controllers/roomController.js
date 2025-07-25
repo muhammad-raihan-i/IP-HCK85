@@ -2,6 +2,7 @@ const {Room,Session} = require('../models')
 // masih ada R kapital, perbaiki jadi r
 //kecuali di nama kelas dan model
 class RoomController{//crud
+    
     static async getAllRoom(req,res,next) {//r
         try{
             const rooms = await Room.findAll({include:[{model:Session}]})
